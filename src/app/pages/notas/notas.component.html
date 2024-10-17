@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas con Palabras Clave</title>
+    
+</head>
+<body>
+
+<h1>Notas</h1>
+<div class="note-container">
+    <textarea id="noteInput" placeholder="Escribe tu nota aquí..."></textarea>
+    <button onclick="addNote()">Agregar Nota</button>
+</div>
+
+<div class="notes-display" id="notesDisplay"></div>
+
+<script>
+    const keywords = ["Idiota", "Estúpido", "Pendejo", "Mierda", "puta","Zorra", "Matar", "Golpear", "puto", "trompadas", "sexo", "gorda", "trola", "trolo", "gordo", "pelotudo", "pelotuda", "autista", "estupida", "matar", "zorra","cagar", "termotanque"  ];
+
+    function addNote() {
+        const noteInput = document.getElementById('noteInput');
+        const notesDisplay = document.getElementById('notesDisplay');
+        const noteText = noteInput.value.trim();
+
+        if (noteText !== "") {
+            const containsKeyword = keywords.some(keyword => noteText.toLowerCase().includes(keyword));
+            
+            if (containsKeyword) {
+                alert("La nota contiene palabras prohibidas y no se guardará.");
+            } else {
+                const newNote = document.createElement('div');
+                newNote.classList.add('note'); // Añadir clase para estilo
+                newNote.textContent = noteText;
+                notesDisplay.appendChild(newNote);
+                noteInput.value = ""; // Limpiar el campo de entrada
+            }
+        } else {
+            alert("Por favor, escribe una nota.");
+        }
+    }
+</script>
+
+</body>
+</html>
